@@ -440,11 +440,14 @@ Este conceito de design garante uma experiência profissional, moderna e acessí
 cd moveis-escritorio-website
 
 # Instale dependências
-pnpm install
+npm install
 
 # Gere build de produção
-pnpm run build
-```
+npm run build
+
+# Para executar o projeto
+npm run dev
+
 
 ### 2.2. Configuração do Firebase
 ```bash
