@@ -18,7 +18,8 @@ import {
   Clock,
   Award,
   LogIn,
-  User
+  User,
+  Instagram // Adicionado ícone do Instagram
 } from 'lucide-react'
 import officeDesign1 from './assets/office_design_ref1.webp'
 import officeDesign2 from './assets/office_design_ref2.jpg'
@@ -47,54 +48,55 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    // Simulação de envio do formulário
+    // Simulación de envío del formulario
     try {
-      // Aqui seria implementada a integração com Google Cloud Functions
-      console.log('Enviando formulário:', formData)
+      // Aquí se implementaría la integración con Google Cloud Functions
+      console.log('Enviando formulario:', formData)
       
-      // Simulação de delay de envio
+      // Simulación de retraso de envío
       await new Promise(resolve => setTimeout(resolve, 1000))
       
-      alert('Mensagem enviada com sucesso! Entraremos em contato em breve.')
+      alert('¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.')
       setFormData({ name: '', email: '', phone: '', message: '' })
     } catch (error) {
-      alert('Erro ao enviar mensagem. Tente novamente.')
+      alert('Error al enviar el mensaje. Inténtalo de nuevo.')
+      console.log('Error al enviar el mensaje:', error)
     }
   }
 
   const handleWhatsApp = () => {
-    const message = encodeURIComponent('Olá! Gostaria de solicitar um orçamento para montagem de móveis de escritório.')
-    window.open(`https://wa.me/5511999999999?text=${message}`, '_blank')
+    const message = encodeURIComponent('¡Hola! Me gustaría solicitar un presupuesto para el montaje de muebles de oficina.')
+    window.open(`https://wa.me/3495999999999?text=${message}`, '_blank')
   }
 
   const handleGoogleLogin = () => {
-    // Simulação de login com Google
+    // Simulación de login con Google
     // Em produção, seria integrado com Firebase Auth
     setIsLoggedIn(true)
     setUser({
-      name: 'João Silva',
-      email: 'joao.silva@email.com',
+      name: 'Juan Silva',
+      email: 'juan.silva@email.com',
       picture: 'https://via.placeholder.com/40'
     })
-    alert('Login realizado com sucesso!')
+    alert('¡Inicio de sesión realizado con éxito!')
   }
 
   const handleMicrosoftLogin = () => {
-    // Simulação de login com Microsoft
+    // Simulación de login com Microsoft
     // Em produção, seria integrado com Firebase Auth
     setIsLoggedIn(true)
     setUser({
-      name: 'Maria Santos',
+      name: 'María Santos',
       email: 'maria.santos@outlook.com',
       picture: 'https://via.placeholder.com/40'
     })
-    alert('Login realizado com sucesso!')
+    alert('¡Inicio de sesión realizado con éxito!')
   }
 
   const handleLogout = () => {
     setIsLoggedIn(false)
     setUser(null)
-    alert('Logout realizado com sucesso!')
+    alert('¡Cierre de sesión realizado con éxito!')
   }
 
   return (
@@ -105,14 +107,14 @@ function App() {
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
               <Wrench className="h-8 w-8 text-blue-600 mr-3" />
-              <span className="text-2xl font-bold text-gray-900">MóveisOffice</span>
+              <span className="text-2xl font-bold text-gray-900">MueblesOficina</span>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#home" className="text-gray-700 hover:text-blue-600 font-medium">Início</a>
-              <a href="#services" className="text-gray-700 hover:text-blue-600 font-medium">Serviços</a>
-              <a href="#portfolio" className="text-gray-700 hover:text-blue-600 font-medium">Portfólio</a>
-              <a href="#about" className="text-gray-700 hover:text-blue-600 font-medium">Sobre</a>
-              <a href="#contact" className="text-gray-700 hover:text-blue-600 font-medium">Contato</a>
+              <a href="#home" className="text-gray-700 hover:text-blue-600 font-medium">Inicio</a>
+              <a href="#services" className="text-gray-700 hover:text-blue-600 font-medium">Servicios</a>
+              <a href="#portfolio" className="text-gray-700 hover:text-blue-600 font-medium">Portafolio</a>
+              <a href="#about" className="text-gray-700 hover:text-blue-600 font-medium">Sobre Nosotros</a>
+              <a href="#contact" className="text-gray-700 hover:text-blue-600 font-medium">Contacto</a>
             </nav>
             <div className="flex items-center space-x-4">
               {isLoggedIn ? (
@@ -122,7 +124,7 @@ function App() {
                     alt={user.name}
                     className="w-8 h-8 rounded-full"
                   />
-                  <span className="text-sm text-gray-700">Olá, {user.name.split(' ')[0]}</span>
+                  <span className="text-sm text-gray-700">Hola, {user.name.split(' ')[0]}</span>
                   <Button 
                     variant="outline" 
                     size="sm"
@@ -157,6 +159,12 @@ function App() {
                 <MessageCircle className="h-4 w-4 mr-2" />
                 WhatsApp
               </Button>
+              <Button asChild className="bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-pink-600 hover:to-yellow-600 ml-2">
+                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+                  <Instagram className="h-4 w-4 mr-2" />
+                  Instagram
+                </a>
+              </Button>
             </div>
           </div>
         </div>
@@ -169,10 +177,10 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-                Montagem de Móveis de Escritório
+                Montaje de Muebles de Oficina
               </h1>
               <p className="text-xl lg:text-2xl mb-8 text-blue-100">
-                Serviços profissionais de montagem, consultoria em layout e manutenção para seu escritório
+                Servicios profesionales de montaje, consultoría en diseño y mantenimiento para su oficina
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
@@ -180,22 +188,22 @@ function App() {
                   className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3"
                   onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
                 >
-                  Solicitar Orçamento
+                  Solicitar Presupuesto
                 </Button>
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3"
+                  className="border-white text-white [background:oklch(0.62_0.14_328.11)] hover:[background:oklch(0.62_0.14_328.11)] hover:text-white px-8 py-3"
                   onClick={() => document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })}
                 >
-                  Ver Portfólio
+                  Ver Portafolio
                 </Button>
               </div>
             </div>
             <div className="hidden lg:block">
               <img 
                 src={officeDesign1} 
-                alt="Escritório moderno montado" 
+                alt="Oficina moderna montada" 
                 className="rounded-lg shadow-2xl"
               />
             </div>
@@ -212,28 +220,28 @@ function App() {
                 <Users className="h-12 w-12 text-blue-600" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-2">500+</div>
-              <div className="text-gray-600">Clientes Satisfeitos</div>
+              <div className="text-gray-600">Clientes Satisfechos</div>
             </div>
             <div>
               <div className="flex justify-center mb-4">
                 <CheckCircle className="h-12 w-12 text-green-600" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-2">1000+</div>
-              <div className="text-gray-600">Móveis Montados</div>
+              <div className="text-gray-600">Muebles Montados</div>
             </div>
             <div>
               <div className="flex justify-center mb-4">
                 <Clock className="h-12 w-12 text-orange-600" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-2">5</div>
-              <div className="text-gray-600">Anos de Experiência</div>
+              <div className="text-gray-600">Años de Experiencia</div>
             </div>
             <div>
               <div className="flex justify-center mb-4">
                 <Award className="h-12 w-12 text-purple-600" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-2">100%</div>
-              <div className="text-gray-600">Garantia de Qualidade</div>
+              <div className="text-gray-600">Garantía de Calidad</div>
             </div>
           </div>
         </div>
@@ -243,9 +251,9 @@ function App() {
       <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Nossos Serviços</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Nuestros Servicios</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Oferecemos soluções completas para seu escritório, desde a montagem até a consultoria em layout
+              Ofrecemos soluciones completas para su oficina, desde el montaje hasta la consultoría en diseño
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -254,11 +262,11 @@ function App() {
                 <div className="flex justify-center mb-4">
                   <Wrench className="h-16 w-16 text-blue-600" />
                 </div>
-                <CardTitle className="text-2xl">Montagem de Móveis</CardTitle>
+                <CardTitle className="text-2xl">Montaje de Muebles</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base">
-                  Profissionais qualificados para montagem de móveis de escritório, residenciais e comerciais com garantia de qualidade.
+                  Profesionales calificados para el montaje de muebles de oficina, residenciales y comerciales con garantía de calidad.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -268,11 +276,11 @@ function App() {
                 <div className="flex justify-center mb-4">
                   <Layout className="h-16 w-16 text-blue-600" />
                 </div>
-                <CardTitle className="text-2xl">Consultoria em Layout</CardTitle>
+                <CardTitle className="text-2xl">Consultoría en Diseño</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base">
-                  Auxílio na organização e otimização de espaços para melhor aproveitamento e funcionalidade do ambiente.
+                  Asistencia en la organización y optimización de espacios para un mejor aprovechamiento y funcionalidad del ambiente.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -282,11 +290,11 @@ function App() {
                 <div className="flex justify-center mb-4">
                   <Settings className="h-16 w-16 text-orange-600" />
                 </div>
-                <CardTitle className="text-2xl">Manutenção e Reparos</CardTitle>
+                <CardTitle className="text-2xl">Mantenimiento y Reparaciones</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base">
-                  Serviços de manutenção preventiva e corretiva para prolongar a vida útil dos seus móveis de escritório.
+                  Servicios de mantenimiento preventivo y correctivo para prolongar la vida útil de sus muebles de oficina.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -298,9 +306,9 @@ function App() {
       <section id="portfolio" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Nosso Portfólio</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Nuestro Portafolio</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Confira alguns dos nossos trabalhos realizados em escritórios de diferentes tamanhos e estilos
+              Vea algunos de nuestros trabajos realizados en oficinas de diferentes tamaños y estilos
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -308,13 +316,13 @@ function App() {
               <div className="overflow-hidden rounded-lg shadow-lg">
                 <img 
                   src={officeDesign1} 
-                  alt="Escritório moderno com móveis planejados" 
+                  alt="Oficina moderna con muebles a medida" 
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="mt-4">
-                <h3 className="text-lg font-semibold text-gray-900">Escritório Corporativo Moderno</h3>
-                <p className="text-gray-600">Montagem completa de móveis planejados para empresa de tecnologia</p>
+                <h3 className="text-lg font-semibold text-gray-900">Oficina Corporativa Moderna</h3>
+                <p className="text-gray-600">Montaje completo de muebles a medida para empresa de tecnología</p>
               </div>
             </div>
 
@@ -328,7 +336,7 @@ function App() {
               </div>
               <div className="mt-4">
                 <h3 className="text-lg font-semibold text-gray-900">Home Office Elegante</h3>
-                <p className="text-gray-600">Consultoria e montagem de móveis para escritório residencial</p>
+                <p className="text-gray-600">Consultoría y montaje de muebles para oficina en casa</p>
               </div>
             </div>
 
@@ -336,13 +344,13 @@ function App() {
               <div className="overflow-hidden rounded-lg shadow-lg">
                 <img 
                   src={officeDesign3} 
-                  alt="Escritório colaborativo" 
+                  alt="Oficina colaborativa" 
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="mt-4">
-                <h3 className="text-lg font-semibold text-gray-900">Espaço Colaborativo</h3>
-                <p className="text-gray-600">Layout otimizado para trabalho em equipe e produtividade</p>
+                <h3 className="text-lg font-semibold text-gray-900">Espacio Colaborativo</h3>
+                <p className="text-gray-600">Diseño optimizado para trabajo en equipo y productividad</p>
               </div>
             </div>
           </div>
@@ -354,14 +362,14 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Sobre Nós</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Sobre Nosotros</h2>
               <p className="text-lg text-gray-600 mb-6">
-                Somos especialistas em montagem de móveis de escritório com mais de 5 anos de experiência no mercado. 
-                Nossa missão é transformar espaços de trabalho em ambientes funcionais, organizados e produtivos.
+                Somos especialistas en el montaje de muebles de oficina con más de 5 años de experiencia en el mercado. 
+                Nuestra misión es transformar espacios de trabajo en ambientes funcionales, organizados y productivos.
               </p>
               <p className="text-lg text-gray-600 mb-8">
-                Trabalhamos com as principais marcas do mercado e oferecemos garantia em todos os nossos serviços. 
-                Nossa equipe é treinada e certificada para garantir a máxima qualidade e segurança na montagem.
+                Trabajamos con las principales marcas del mercado y ofrecemos garantía en todos nuestros servicios. 
+                Nuestro equipo está capacitado y certificado para garantizar la máxima calidad y seguridad en el montaje.
               </p>
               <div className="flex items-center space-x-4">
                 <div className="flex">
@@ -369,7 +377,7 @@ function App() {
                     <Star key={star} className="h-5 w-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <span className="text-gray-600">4.9/5 - Avaliação dos clientes</span>
+                <span className="text-gray-600">4.9/5 - Valoración de los clientes</span>
               </div>
             </div>
             <div>
@@ -387,56 +395,56 @@ function App() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Perguntas Frequentes</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Preguntas Frecuentes</h2>
             <p className="text-xl text-gray-600">
-              Tire suas dúvidas sobre nossos serviços
+              Resuelva sus dudas sobre nuestros servicios
             </p>
           </div>
           <div className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Quanto tempo leva para montar um móvel?</CardTitle>
+                <CardTitle>¿Cuánto tiempo se tarda en montar un mueble?</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  O tempo varia conforme a complexidade do móvel. Móveis simples levam de 30 minutos a 1 hora, 
-                  enquanto móveis mais complexos podem levar várias horas. Fornecemos uma estimativa no orçamento.
+                  El tiempo varía según la complejidad del mueble. Los muebles simples tardan de 30 minutos a 1 hora, 
+                  mientras que los más complejos pueden tardar varias horas. Proporcionamos una estimación en el presupuesto.
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Vocês fornecem as ferramentas?</CardTitle>
+                <CardTitle>¿Proporcionan las herramientas?</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  Sim! Nossos profissionais trazem todas as ferramentas necessárias para a montagem. 
-                  Você não precisa se preocupar com nada.
+                  ¡Sí! Nuestros profesionales traen todas las herramientas necesarias para el montaje. 
+                  No tiene que preocuparse por nada.
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Há garantia nos serviços?</CardTitle>
+                <CardTitle>¿Hay garantía en los servicios?</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  Oferecemos garantia de 90 dias em todos os nossos serviços de montagem. 
-                  Se houver algum problema relacionado à montagem, retornamos sem custo adicional.
+                  Ofrecemos garantía de 90 días en todos nuestros servicios de montaje. 
+                  Si hay algún problema relacionado con el montaje, regresamos sin costo adicional.
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Atendem em quais regiões?</CardTitle>
+                <CardTitle>¿En qué regiones atienden?</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  Atendemos São Paulo capital e toda a região metropolitana. 
-                  Para outras localidades, consulte disponibilidade através do WhatsApp.
+                  Atendemos Sevilla capital y toda la región metropolitana. 
+                  Para otras localidades, consulte disponibilidad a través de WhatsApp.
                 </p>
               </CardContent>
             </Card>
@@ -448,24 +456,24 @@ function App() {
       <section id="contact" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Entre em Contato</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Contáctenos</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Solicite seu orçamento sem compromisso. Respondemos em até 24 horas.
+              Solicite su presupuesto sin compromiso. Respondemos en un plazo de 24 horas.
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <Card>
                 <CardHeader>
-                  <CardTitle>Envie uma Mensagem</CardTitle>
+                  <CardTitle>Enviar un Mensaje</CardTitle>
                   <CardDescription>
-                    Preencha o formulário abaixo e entraremos em contato
+                    Complete el formulario a continuación y nos pondremos en contacto
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <Label htmlFor="name">Nome Completo</Label>
+                      <Label htmlFor="name">Nombre Completo</Label>
                       <Input
                         id="name"
                         name="name"
@@ -477,7 +485,7 @@ function App() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email">E-mail</Label>
+                      <Label htmlFor="email">Correo Electrónico</Label>
                       <Input
                         id="email"
                         name="email"
@@ -489,7 +497,7 @@ function App() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="phone">Telefone</Label>
+                      <Label htmlFor="phone">Teléfono</Label>
                       <Input
                         id="phone"
                         name="phone"
@@ -500,7 +508,7 @@ function App() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="message">Mensagem</Label>
+                      <Label htmlFor="message">Mensaje</Label>
                       <Textarea
                         id="message"
                         name="message"
@@ -509,11 +517,11 @@ function App() {
                         onChange={handleInputChange}
                         required
                         className="mt-1"
-                        placeholder="Descreva seu projeto ou dúvida..."
+                        placeholder="Describa su proyecto o consulta..."
                       />
                     </div>
                     <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
-                      Enviar Mensagem
+                      Enviar Mensaje
                     </Button>
                   </form>
                 </CardContent>
@@ -521,27 +529,27 @@ function App() {
             </div>
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Informações de Contato</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Información de Contacto</h3>
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <Phone className="h-6 w-6 text-blue-600 mr-4" />
                     <div>
-                      <div className="font-semibold">Telefone</div>
-                      <div className="text-gray-600">(11) 99999-9999</div>
+                      <div className="font-semibold">Teléfono</div>
+                      <div className="text-gray-600">(95) 99999-9999</div>
                     </div>
                   </div>
                   <div className="flex items-center">
                     <Mail className="h-6 w-6 text-blue-600 mr-4" />
                     <div>
                       <div className="font-semibold">E-mail</div>
-                      <div className="text-gray-600">contato@moveisoffice.com.br</div>
+                      <div className="text-gray-600">contato@moveisoffice.com.es</div>
                     </div>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="h-6 w-6 text-blue-600 mr-4" />
                     <div>
-                      <div className="font-semibold">Localização</div>
-                      <div className="text-gray-600">São Paulo - SP e Região Metropolitana</div>
+                      <div className="font-semibold">Ubicación</div>
+                      <div className="text-gray-600">Sevilla y Región Metropolitana</div>
                     </div>
                   </div>
                 </div>
@@ -549,10 +557,19 @@ function App() {
               <div>
                 <Button 
                   onClick={handleWhatsApp}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg"
+                  className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg mb-4"
                 >
                   <MessageCircle className="h-6 w-6 mr-3" />
                   Falar no WhatsApp
+                </Button>
+                <Button 
+                  asChild
+                  className="w-full bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-pink-600 hover:to-yellow-600 text-white py-6 text-lg"
+                >
+                  <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+                    <Instagram className="h-6 w-6 mr-3" />
+                    Instagram
+                  </a>
                 </Button>
               </div>
             </div>
@@ -567,34 +584,34 @@ function App() {
             <div>
               <div className="flex items-center mb-4">
                 <Wrench className="h-8 w-8 text-blue-400 mr-3" />
-                <span className="text-2xl font-bold">MóveisOffice</span>
+                <span className="text-2xl font-bold">MueblesOficina</span>
               </div>
               <p className="text-gray-400">
-                Especialistas em montagem de móveis de escritório. 
-                Transformando espaços de trabalho em ambientes produtivos.
+                Especialistas en el montaje de muebles de oficina. 
+                Transformando espacios de trabajo en ambientes productivos.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-4">Links Úteis</h3>
+              <h3 className="text-lg font-semibold mb-4">Enlaces Útiles</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#home" className="hover:text-white">Início</a></li>
-                <li><a href="#services" className="hover:text-white">Serviços</a></li>
-                <li><a href="#portfolio" className="hover:text-white">Portfólio</a></li>
-                <li><a href="#about" className="hover:text-white">Sobre</a></li>
-                <li><a href="#contact" className="hover:text-white">Contato</a></li>
+                <li><a href="#home" className="hover:text-white">Inicio</a></li>
+                <li><a href="#services" className="hover:text-white">Servicios</a></li>
+                <li><a href="#portfolio" className="hover:text-white">Portafolio</a></li>
+                <li><a href="#about" className="hover:text-white">Sobre Nosotros</a></li>
+                <li><a href="#contact" className="hover:text-white">Contacto</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-4">Contato</h3>
+              <h3 className="text-lg font-semibold mb-4">Contacto</h3>
               <div className="space-y-2 text-gray-400">
-                <div>(11) 99999-9999</div>
-                <div>contato@moveisoffice.com.br</div>
-                <div>São Paulo - SP</div>
+                <div>(95) 99999-9999</div>
+                <div>contacto@moveisoffice.com.es</div>
+                <div>Sevilla</div>
               </div>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 MóveisOffice. Todos os direitos reservados.</p>
+            <p>&copy; 2024 MueblesOficina. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>
@@ -608,6 +625,18 @@ function App() {
         >
           <MessageCircle className="h-6 w-6" />
         </Button>
+      </div>
+      {/* Instagram Float Button */}
+      <div className="fixed bottom-6 right-20 z-50">
+        <Button
+          asChild
+          className="bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-pink-600 hover:to-yellow-600 rounded-full p-4 shadow-lg"
+          size="lg"
+        >
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+            <Instagram className="h-6 w-6 text-white" />
+          </a>
+        </Button>      
       </div>
     </div>
   )
